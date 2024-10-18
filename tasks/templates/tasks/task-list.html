@@ -1,7 +1,12 @@
-{% extends "tasks/base.html" %}
+{% extends "tasks/base.html" %} 
 
-{% block title %}SuperTodo | Home{% endblock title %}
+{% block title %}SuperTodo | Task list{%endblock title %} 
 
 {% block body %}
-{{ task }}
+<h1>Tasks</h1>
+<ul>
+  {% for task in tasks %}
+  <li>{{ task }}</li>
+  {% endfor %}
+</ul>
 {% endblock body %}

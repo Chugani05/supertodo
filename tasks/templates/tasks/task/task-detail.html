@@ -2,8 +2,13 @@
 
 {% load static %}
 
-{% block title %}CheckMate | {{ task.title }}{% endblock title %} 
+{% block title %}SuperTodo | {{ task.title }}{% endblock title %} 
 
 {% block body %}
-
+  <h1>Title: {{ task.title }}</h1>
+  <h2>Created at: {{task.created_at}}</h2>
+  <h2>Updated at: {{ task.updated_at }}</h2>
+  <h2>Deadline: {{ task.deadline }}</h2>
+  <h3>Description: {{ task.description }}</h3>
+  <h5>x: {{ task.check_box }}</h5>
 {% endblock body %}
