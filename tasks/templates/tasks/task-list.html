@@ -3,10 +3,48 @@
 {% block title %}SuperTodo | Task list{%endblock title %} 
 
 {% block body %}
-<h1>Tasks</h1>
-<ul>
-  {% for task in tasks %}
-  <li>{{ task }}</li>
-  {% endfor %}
-</ul>
+<h3>Tasks</h3>
+
+  <div class="d-flex justify-content-center btn-group" role="group" aria-label="Basic mixed styles example">
+    <a href="{% url 'tasks:add-task' %}">
+      <button type="button" class="btn btn-outline-primary">Add new task</button>
+    </a>
+    <a href="{% url 'tasks:done-task' %}">
+      <button type="button" class="btn btn-outline-success">View done tasks</button>
+    </a>
+    <a href="{% url 'tasks:pending-task' %}">
+      <button type="button" class="btn btn-outline-danger">View pending tasks</button>
+    </a>
+    <a href="{% url 'tasks:task-list' %}">
+      <button type="button" class="btn btn-outline-warning">View all tasks</button>
+    </a>
+  </div>
+
+  <ul class="list-group text-center mt-5">
+    {% for task in tasks %}
+      <div class='list-group-item'>
+        <a href="{% url 'tasks:task-detail' task.slug %}">{{ task }}</a>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Options
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item btn btn-outline-warning" href="#">Edit</a></li>
+              <li><a class="dropdown-item btn btn-outline-danger" href="#">Remove</a></li>
+              <li><a class="dropdown-item btn btn-outline-success" href="#">Open</a></li>
+              <li><a class="dropdown-item btn btn-outline-danger" href="#">Close</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+    <div class="text-center">
+      <h4>No pending tasks</h4>
+      <button type="button" class="btn btn-outline-secondary w-30 ">Add a task now +</button>
+    </div>
+      
+    {% endfor %}
+  </ul>
+
 {% endblock body %}
