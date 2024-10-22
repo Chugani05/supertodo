@@ -36,3 +36,14 @@ def add_task(request):
     else:
         form = AddPostForm()
     return render(request, 'tasks/task/add-task.html', dict(form=form))
+
+
+# def edit_task():
+
+
+def delete_task():
+    if request.method == 'POST':
+        task.delete()
+        return redirect('tasks:task_list')
+
+    return render(request, 'tasks/task/delete-task.html', )

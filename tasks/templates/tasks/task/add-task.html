@@ -3,11 +3,35 @@
 {% block title %}CheckMate | Add task{% endblock title %} 
 
 {% block body %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    
-    <input type="submit" value="Enviar">
-  </form>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h2>Create new task</h2>
+        <a href="{% url 'tasks:task-list' %}" class="btn-close" aria-label="Close"></a> <!-- Botón "X" para salir -->
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                <div class="form-text text-muted">{{ field.help_text }}</div>
+                {% if field.errors %}
+                    <div class="text-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form>
+</div>
 {% endblock body %}
+
+
+
+
+
 

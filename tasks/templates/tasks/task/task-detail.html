@@ -1,14 +1,31 @@
 {% extends "tasks/base.html" %}
 
-{% load static %}
-
 {% block title %}SuperTodo | {{ task.title }}{% endblock title %} 
 
 {% block body %}
-  <h1>Title: {{ task.title }}</h1>
-  <h2>Created at: {{task.created_at}}</h2>
-  <h2>Updated at: {{ task.updated_at }}</h2>
-  <h2>Deadline: {{ task.deadline }}</h2>
-  <h3>Description: {{ task.description }}</h3>
-  <h5>x: {{ task.check_box }}</h5>
+
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="card-title">{{ task.title }}</h1>
+      <ul class="list-unstyled">
+        <li><span class="fs-5"><strong>Created at:</strong> {{ task.created_at }}</span></li>
+        <li><span class="fs-5"><strong>Updated at:</strong> {{ task.updated_at }}</span></li>
+        <li><span class="fs-5"><strong>Deadline:</strong> {{ task.deadline }}</span></li>
+        <br>
+        <li><span class="fs-4"><strong>Description:</strong> {{ task.description }}</span></li>
+        <br>
+        <li><strong>Check Box:</strong> {{ task.check_box }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{% url 'tasks:task-list' %}">
+      <button type="button" class="btn btn-outline-primary">Go back to Task List</button>
+    </a>
+  </div>
+</div>
+
 {% endblock body %}
+

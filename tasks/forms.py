@@ -8,11 +8,7 @@ class AddPostForm(forms.ModelForm):
         model = Task
         fields = ('title', 'description', 'deadline')
         widgets = {
-            'deadline': forms.DateInput(attrs={'type': 'date'})
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Enter description'}),
+            'deadline': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({'id': 'post-title'})
-        self.fields['description'].widget.attrs.update({'class': 'form-control'})
-

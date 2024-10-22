@@ -1,0 +1,21 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}SuperTodo | Task deleted{% endblock title %} 
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="alert alert-success text-center" role="alert">
+        <h4 class="alert-heading">Task Deleted Successfully!</h4>
+        <p>The task has been removed from the list.</p>
+        <hr>
+        <p class="mb-0">Would you like to go back to the task list or create a new task?</p>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'tasks:task_list' %}" class="btn btn-primary">Go back to Task List</a>
+        <a href="{% url 'tasks:add_task' %}" class="btn btn-success">Create new task</a>
+    </div>
+</div>
+
+{% endblock body %}
