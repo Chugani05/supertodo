@@ -6,5 +6,5 @@ from .models import Task
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     prepopulated_fields = {
-        'slug': ['title']
+        'slug': ['name']
     }

@@ -1,10 +1,10 @@
-{% extends "tasks/base.html" %} 
+{% extends "tasks/base.html" %}
+
+{% load static %}
 
 {% block title %}SuperTodo | Task list{%endblock title %} 
 
 {% block body %}
-
-<h3>SuperTodo</h3>
 
 <div class="d-flex justify-content-center btn-group" role="group" aria-label="Basic mixed styles example">
   <a href="{% url 'tasks:add-task' %}">
@@ -23,25 +23,28 @@
 
 <ul class="list-group text-center mt-5">
   {% for task in tasks %}
-    <div class='list-group-item'>
-      <a href="{% url 'tasks:task-detail' task.slug %}">{{ task }}</a>
+    <li class="list-group-item list-group-item-action {% if task.done == True %}text-decoration-line-through{% endif %} ">
+      <a href="{% url 'tasks:task-detail' task.slug %}" class="text-decoration-none text-body">{{ task }}</a>
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Options
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Edit</a></li>
-            <li><a class="dropdown-item" href="{% url 'tasks:delete-task' %}">Remove</a></li>
-            <li><a class="dropdown-item" href="#">Open</a></li>
-            <li><a class="dropdown-item" href="#">Close</a></li>
+            <li><a class="dropdown-item" href="{% url 'tasks:edit-task' task.slug %}">Edit</a></li>
+            <li><a class="dropdown-item" href="{% url 'tasks:delete-task' task.slug %}">Remove</a></li>
+            {% if task.done %}
+            <li><a class="dropdown-item" href="{% url 'tasks:toggle-task' task.slug %}">Re-open</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'tasks:toggle-task' task.slug %}">Close</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
-    </div>
+    </li>
   {% empty %}
   <div class="text-center">
-    <h4>No pending tasks</h4>
+    <h4>{{title}}</h4>
     <a href="{% url 'tasks:add-task' %}">
       <button type="button" class="btn btn-outline-secondary w-30 ">Add a new task now +</button>
     </a>

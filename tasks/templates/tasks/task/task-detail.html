@@ -1,21 +1,41 @@
 {% extends "tasks/base.html" %}
 
-{% block title %}SuperTodo | {{ task.title }}{% endblock title %} 
+{% load static %}
+
+{% block title %}SuperTodo | {{ task.name }}{% endblock title %} 
 
 {% block body %}
 
 <div class="container mt-5">
   <div class="card shadow-sm">
     <div class="card-body">
-      <h1 class="card-title">{{ task.title }}</h1>
+      <h1 class="card-title">{{ task.name }}</h1>
       <ul class="list-unstyled">
         <li><span class="fs-5"><strong>Created at:</strong> {{ task.created_at }}</span></li>
         <li><span class="fs-5"><strong>Updated at:</strong> {{ task.updated_at }}</span></li>
-        <li><span class="fs-5"><strong>Deadline:</strong> {{ task.deadline }}</span></li>
+        <li><span class="fs-5"><strong>Deadline:</strong> 
+          {% if task.complete_before is None %}
+          No deadline.
+          {% else %} 
+          {{ task.complete_before }}
+          {% endif %}
+        </span></li>
         <br>
-        <li><span class="fs-4"><strong>Description:</strong> {{ task.description }}</span></li>
+        <li><span class="fs-4"><strong>Description:</strong>
+          {% if task.description|length > 0 %}
+          {{ task.description }}
+          {% else %} 
+          No description.
+          {% endif %}
+        </span></li>
         <br>
-        <li><strong>Check Box:</strong> {{ task.check_box }}</li>
+        <li><strong>Check Box:</strong> 
+          {% if task.done %}
+          <img src="{% static "imgs/checked.png" %}" alt="Done" width="35px">
+          {% else %}
+          <img src="{% static "imgs/cancel.png" %}" alt="Not done" width="35px">
+          {% endif %}
+        </li>
       </ul>
     </div>
   </div>

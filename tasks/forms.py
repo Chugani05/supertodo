@@ -6,9 +6,9 @@ from .models import Task
 class AddPostForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ('title', 'description', 'deadline')
+        fields = ('name', 'description', 'complete_before')
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Enter description'}),
-            'deadline': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'complete_before': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
