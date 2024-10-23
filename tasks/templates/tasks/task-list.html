@@ -2,9 +2,7 @@
 
 {% block title %}SuperTodo | Task list{%endblock title %} 
 
-
 {% block nav%}
-
 <div class="d-flex justify-content-center btn-group" role="group" aria-label="Basic mixed styles example">
   <a href="{% url 'tasks:add-task' %}">
     <button type="button" class="btn btn-outline-primary">Add new task</button>
@@ -19,16 +17,24 @@
     <button type="button" class="btn btn-outline-warning">View all tasks</button>
   </a>
 </div>
-
 {% endblock nav%}
 
-
 {% block body %}
-
 <ul class="list-group text-center mt-5 d-flex justify-content-center w-75">
   {% for task in tasks %}
     <li class="list-group-item list-group-item-action d-flex justify-content-between">
-      <a href="{% url 'tasks:task-detail' task.slug %}" class="text-decoration-none text-body {% if task.done == True %}text-decoration-line-through{% endif %}">{{ task }}</a>
+      <div class="d-flex">
+        <form method="POST" action="{% url 'tasks:toggle-task' task.slug %}" style="display: inline;">
+          {% csrf_token %}
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="task-{{ task.slug }}" name="done" {% if task.done %}checked{% endif %} onChange="this.form.submit()">
+            <label class="form-check-label" for="task-{{ task.slug }}"></label>
+          </div>
+        </form>
+
+        <a href="{% url 'tasks:task-detail' task.slug %}" class="text-decoration-none text-body {% if task.done == True %}text-decoration-line-through{% endif %}">{{ task }}</a>
+      </div>
+
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -73,8 +79,6 @@
       <button type="button" class="btn btn-outline-secondary w-30 ">Add a new task now +</button>
     </a>
   </div>
-    
   {% endfor %}
 </ul>
-
 {% endblock body %}
