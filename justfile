@@ -31,6 +31,10 @@ r:
 db:
     sqlite3 db.sqlite3
 
+# Show sqlite DB schema for given table
+@schema table:
+    sqlite3 db.sqlite3 '.schema --indent {{ table }}'
+
 # Open a Django interactive shell.
 sh:
     ./manage.py shell
