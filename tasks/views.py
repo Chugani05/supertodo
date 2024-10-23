@@ -8,18 +8,19 @@ from .models import Task
 
 
 def task_list(request: HttpRequest) -> HttpResponse:
+    title = "No tasks added yet"
     tasks = Task.objects.all().order_by('done', F('complete_before').asc(nulls_last=True))
-    return render(request, 'tasks/task-list.html', dict(tasks=tasks))
+    return render(request, 'tasks/task-list.html', dict(tasks=tasks, title=title))
 
 
 def done_task(request: HttpRequest) -> HttpResponse:
-    title = 'No completed tasks'
+    title = "You don't have any completed tasks"
     tasks = Task.objects.filter(done=True)
     return render(request, 'tasks/task-list.html', dict(tasks=tasks, title=title))
 
 
 def pending_task(request: HttpRequest) -> HttpResponse:
-    title = 'No pending tasks'
+    title = "At the moment you don't have any pending tasks"
     tasks = Task.objects.filter(done=False)
     return render(request, 'tasks/task-list.html', dict(tasks=tasks, title=title))
 

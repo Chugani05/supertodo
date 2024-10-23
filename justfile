@@ -1,22 +1,22 @@
-# Levantar el servidor de desarrollo
-dev:
+# Run development server
+s:
     ./manage.py runserver
 
-# Comprobar el proyecto Django
-check:
+# Check Django project
+c:
     ./manage.py check
 
-# Crear las migraciones
+# Generate migrations
 mm:
     ./manage.py makemigrations
 
-# Aplicar las migraciones
+# Apply migrations
 m:
     ./manage.py migrate
 
 # Remove migrations and database. Reset DB artefacts.
 [confirm("⚠️ All migrations and database will be removed. Continue? [yN]:")]
-reset-db:
+r:
     #!/usr/bin/env bash
     find . -path "*/migrations/*.py" ! -path "./.venv/*" ! -name "__init__.py" -delete
     find . -path "*/migrations/*.pyc" ! -path "./.venv/*" -delete
@@ -26,3 +26,11 @@ reset-db:
     echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | ./manage.py shell
     echo
     echo "Creating superuser → admin:admin ... OK"
+
+# Open sqlite project database
+db:
+    sqlite3 db.sqlite3
+
+# Open a Django interactive shell.
+sh:
+    ./manage.py shell
