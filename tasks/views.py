@@ -13,7 +13,7 @@ def task_list(request: HttpRequest) -> HttpResponse:
 
 
 def done_task(request: HttpRequest) -> HttpResponse:
-    title = 'No complited tasks'
+    title = 'No completed tasks'
     tasks = Task.objects.filter(done=True)
     return render(request, 'tasks/task-list.html', dict(tasks=tasks, title=title))
 
