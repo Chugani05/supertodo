@@ -4,4 +4,4 @@
 - [Description](#description)
 
 ### Description
-Una aplicación de gestión de tareas construida con Django, Python y Bootstrap que permite a los usuarios crear, organizar y marcar tareas como completadas. Con una interfaz intuitiva y adaptable, los usuarios pueden añadir, editar y eliminar tareas de su lista de pendientes, y limpiar fácilmente las tareas completadas para mantener un flujo de trabajo ordenado. Ideal para gestionar tareas diarias de manera sencilla y eficiente.
+A task management application built with Django, Python and Bootstrap that allows users to create, organize and mark tasks as completed. With an intuitive and adaptable interface, users can add, edit and delete tasks from their to-do list, and easily clean up completed tasks to maintain an orderly workflow. Ideal for managing daily tasks in a simple and efficient way.
