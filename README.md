@@ -1,5 +1,9 @@
 # Super Todo
 
+<div align=center>
+  <img src="./resourses/supertodo.png" alt="final look of the project" width="100%">
+</div>
+
 ## Content
 - [Description](#description)
 
