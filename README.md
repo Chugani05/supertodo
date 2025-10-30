@@ -1,4 +1,4 @@
-# Super Todo
+# Supertodo
 
 <div align=center>
   <img src="./resourses/supertodo.png" alt="final look of the project" width="100%">
